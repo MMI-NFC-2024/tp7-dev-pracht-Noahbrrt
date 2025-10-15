@@ -1,9 +1,23 @@
 ---
 import * as Plot from "@observablehq/plot";
 import { JSDOM } from "jsdom";
+
 const { options } = Astro.props;
 
-const plot = Plot.plot({ ...options, document: new JSDOM("").window.document });
+const plot = Plot.plot({
+  title: "Relation entre la longueur et la profondeur du bec des manchots",
+  subtitle: "Dataset : Palmer Penguins",
+  caption: "Figure 1. Chaque point représente un manchot coloré selon son espèce.",
+  ariaLabel: "Diagramme de dispersion des manchots selon la longueur et la profondeur du bec.",
+  ...options,
+  document: new JSDOM("").window.document,
+});
 ---
 
-<div set:html={plot.outerHTML} />
+<figure>
+  <div set:html={plot.outerHTML}></div>
+
+  <figcaption>
+    Relation entre la longueur et la profondeur du bec selon l'espèce de manchot.
+  </figcaption>
+</figure>
